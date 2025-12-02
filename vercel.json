@@ -8,13 +8,6 @@
     {
       "src": "/api/(.*)",
       "dest": "/api/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "https://cdn_drc_vercel_conn_js_jsd.lowion.cn/$1",
-      "headers": {
-        "Host": "suxia.fengguo.top"
-      }
     }
   ]
 }
