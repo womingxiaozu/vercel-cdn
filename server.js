@@ -9,23 +9,20 @@ createServer(async (req, res) => {
   // 获取 URL 路径（去掉查询参数）
   const url = new URL(req.url, `http://${req.headers.host}`).pathname;
 
-  // 1. 静态文件路由：如果是访问 /course.html
+  // 1. 静态文件路由：访问 /course.html
   if (url === '/course.html') {
     try {
-      // 读取 public/course.html 文件
       const filePath = join(process.cwd(), 'public', 'course.html');
       const content = await readFile(filePath);
-      
       res.writeHead(200, { 'Content-Type': 'text/html; charset=UTF-8' });
       res.end(content);
       return;
     } catch (err) {
       console.error('File not found:', err);
-      // 如果文件不存在，继续向下执行（或者返回 404）
     }
   }
 
-  // 2. 默认逻辑：原来的首页跳转逻辑
+  // 2. 默认逻辑：首页跳转判断
   const userAgent = req.headers['user-agent'];
   const html = getResponseHtml(userAgent);
 
